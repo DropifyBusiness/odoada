@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Fashion Forward</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="page-transition"></div>
+    
+    <header class="header">
+        <div class="container">
+            <div class="logo">Fashion Forward</div>
+            <nav class="nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html" class="active">Каталог</a>
+                <a href="contacts.html">Контакты</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="catalog">
+        <div class="container">
+            <h1 class="section-title animate-from-left">Каталог товаров</h1>
+            
+            <div class="filters animate-from-bottom">
+                <div class="filter-group">
+                    <label for="category">Категория:</label>
+                    <select id="category">
+                        <option value="all">Все</option>
+                        <option value="dresses">Платья</option>
+                        <option value="jackets">Куртки</option>
+                        <option value="shirts">Рубашки</option>
+                        <option value="pants">Брюки</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="price">Цена:</label>
+                    <select id="price">
+                        <option value="all">Все</option>
+                        <option value="0-50">До $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-200">$100 - $200</option>
+                        <option value="200+">От $200</option>
+                    </select>
+                </div>
+                
+                <button class="btn">Применить</button>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Товары будут загружаться через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-column">
+                <h3>Магазин</h3>
+                <a href="catalog.html">Каталог</a>
+                <a href="#">Новинки</a>
+                <a href="#">Акции</a>
+            </div>
+            <div class="footer-column">
+                <h3>Информация</h3>
+                <a href="#">О нас</a>
+                <a href="#">Доставка</a>
+                <a href="#">Оплата</a>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <a href="contacts.html">Наши магазины</a>
+                <a href="tel:+123456789">+1 234 567 89</a>
+                <a href="mailto:info@fashionforward.com">info@fashionforward.com</a>
+            </div>
+        </div>
+        <div class="copyright">© 2023 Fashion Forward. Все права защищены.</div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Загрузка товаров для каталога
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsGrid = document.querySelector('.catalog .products-grid');
+            const products = [
+                {
+                    id: 1,
+                    name: "Элегантное платье",
+                    price: 89.99,
+                    category: "dresses",
+                    image: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                {
+                    id: 2,
+                    name: "Стильная куртка",
+                    price: 129.99,
+                    category: "jackets",
+                    image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                {
+                    id: 3,
+                    name: "Классическая рубашка",
+                    price: 49.99,
+                    category: "shirts",
+                    image: "https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                {
+                    id: 4,
+                    name: "Удобные джинсы",
+                    price: 59.99,
+                    category: "pants",
+                    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                {
+                    id: 5,
+                    name: "Летнее платье",
+                    price: 69.99,
+                    category: "dresses",
+                    image: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                },
+                {
+                    id: 6,
+                    name: "Джинсовая куртка",
+                    price: 79.99,
+                    category: "jackets",
+                    image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                }
+            ];
+            
+            // Отображение товаров
+            function displayProducts(productsToShow) {
+                productsGrid.innerHTML = '';
+                
+                productsToShow.forEach((product, index) => {
+                    const delay = (index % 3 + 1) * 0.2;
+                    
+                    const productCard = document.createElement('div');
+                    productCard.className = `product-card animate-from-bottom delay-${index % 3 + 1}`;
+                    productCard.style.animationDelay = `${delay}s`;
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">$${product.price.toFixed(2)}</p>
+                        <button class="btn">В корзину</button>
+                    `;
+                    
+                    productsGrid.appendChild(productCard);
+                });
+            }
+            
+            // Инициализация
+            displayProducts(products);
+            
+            // Фильтрация товаров
+            document.querySelector('.filters .btn').addEventListener('click', function() {
+                const category = document.getElementById('category').value;
+                const price = document.getElementById('price').value;
+                
+                let filteredProducts = [...products];
+                
+                // Фильтр по категории
+                if (category !== 'all') {
+                    filteredProducts = filteredProducts.filter(p => p.category === category);
+                }
+                
+                // Фильтр по цене
+                if (price !== 'all') {
+                    const [min, max] = price.split('-').map(Number);
+                    
+                    if (price.endsWith('+')) {
+                        filteredProducts = filteredProducts.filter(p => p.price >= 200);
+                    } else {
+                        filteredProducts = filteredProducts.filter(p => p.price >= min && p.price <= max);
+                    }
+                }
+                
+                displayProducts(filteredProducts);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Fashion Forward</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <div class="page-transition"></div>
+    
+    <header class="header">
+        <div class="container">
+            <div class="logo">Fashion Forward</div>
+            <nav class="nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="contacts.html" class="active">Контакты</a>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="contact-page">
+        <div class="container">
+            <h1 class="section-title animate-from-left">Наши контакты</h1>
+            
+            <div class="contact-info animate-from-bottom">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>ул. Модная, 123, г. Москва</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+1 234 567 89</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@fashionforward.com</p>
+                </div>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-form animate-from-left">
+                    <h2>Напишите нам</h2>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                </div>
+                
+                <div class="contact-map animate-from-right">
+                    <div id="map" style="height: 400px; border-radius: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-column">
+                <h3>Магазин</h3>
+                <a href="catalog.html">Каталог</a>
+                <a href="#">Новинки</a>
+                <a href="#">Акции</a>
+            </div>
+            <div class="footer-column">
+                <h3>Информация</h3>
+                <a href="#">О нас</a>
+                <a href="#">Доставка</a>
+                <a href="#">Оплата</a>
+            </div>
+            <div class="footer-column">
+                <h3>Контакты</h3>
+                <a href="contacts.html">Наши магазины</a>
+                <a href="tel:+123456789">+1 234 567 89</a>
+                <a href="mailto:info@fashionforward.com">info@fashionforward.com</a>
+            </div>
+        </div>
+        <div class="copyright">© 2023 Fashion Forward. Все права защищены.</div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Карта
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('map').setView([55.7558, 37.6173], 15);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            L.marker([55.7558, 37.6173]).addTo(map)
+                .bindPopup('Наш магазин в Москве')
+                .openPopup();
+        });
+    </script>
+</body>
+</html>
